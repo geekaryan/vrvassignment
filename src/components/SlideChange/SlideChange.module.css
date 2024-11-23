@@ -1,0 +1,43 @@
+.imgDiv {
+  margin-right: 10px;
+}
+
+.text {
+  font-family: Inter;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.hdiv {
+  padding: 10px 10px;
+  color: #565e6cff;
+}
+
+.hdiv:hover {
+  background: #ced0f8ff;
+  color: #636ae8ff;
+  border-radius: 2px;
+}
+
+.nameText {
+  font-family: Inter;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 700;
+  color: #171a1fff;
+}
+
+.profile {
+  font-family: Inter; /* Body */
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #565e6cff;
+}
+
+.unicolor {
+  color: #565e6cff;
+}

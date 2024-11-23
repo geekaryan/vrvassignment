@@ -1,0 +1,45 @@
+.inputTag {
+  width: 180px;
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-family: Inter;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  background: #00000000; /* transparent */
+  border-radius: 6px; /* border-m */
+  border-width: 1px;
+  border-color: #bcc1caff; /* neutral-400 */
+  border-style: solid;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.send {
+  color: #ffffffff; /* white */
+  background: #636ae8ff;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.cancel {
+  color: #636ae8ff; /* white */
+  background: #f2f2fdff;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 32px;
+  padding-right: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.send:hover {
+  color: #636ae8ff;
+  background: #f2f2fdff;
+}
