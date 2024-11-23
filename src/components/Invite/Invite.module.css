@@ -17,7 +17,7 @@
 }
 
 .send {
-  color: #ffffffff; /* white */
+  color: #ffffffff;
   background: #636ae8ff;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -29,7 +29,7 @@
 }
 
 .cancel {
-  color: #636ae8ff; /* white */
+  color: #636ae8ff;
   background: #f2f2fdff;
   padding-top: 12px;
   padding-bottom: 12px;
