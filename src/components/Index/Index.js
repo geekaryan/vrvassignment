@@ -1,6 +1,7 @@
 import Navbar from "../Navbar/Navbar";
 import SlideChange from "../SlideChange/SlideChange";
 import Invite from "../Invite/Invite";
+import User from "../Users/User";
 
 const Index = () => {
   return (
@@ -8,11 +9,13 @@ const Index = () => {
       <div className="mt-3">
         <Navbar />
       </div>
-      <div className="flex justify-between ml-8 mr-8 mt-11">
+      <div className="flex justify-between ml-8 mr-8 mt-11 mb-2">
         <div>
           <SlideChange />
         </div>
-        <div>middle</div>
+        <div>
+          <User />
+        </div>
         <div>
           <Invite />
         </div>

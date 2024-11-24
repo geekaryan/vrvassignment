@@ -1,0 +1,53 @@
+.text {
+  font-family: Archivo; /* Heading */
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 700;
+  color: #000000ff;
+}
+
+.name {
+  font-family: Inter; /* Body */
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #000000ff;
+  margin-bottom: 2px;
+}
+
+.rest {
+  font-family: Inter; /* Body */
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #565e6cff;
+  margin-bottom: 2px;
+}
+
+.delete {
+  padding: 8px 12px;
+  font-family: Inter;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #636ae8ff; /* primary-500 */
+  background: #f2f2fdff; /* primary-100 */
+  opacity: 1;
+  border: none;
+  border-radius: 8px; /* border-l */
+  gap: 6px;
+}
+
+.del2 {
+  padding: 8px 12px;
+  font-family: Inter;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #ffffffff; /* white */
+  background: #636ae8ff; /* primary-500 */
+  opacity: 1;
+  border: none;
+  border-radius: 8px; /* border-l */
+  gap: 6px;
+}

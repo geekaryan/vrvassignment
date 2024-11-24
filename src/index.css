@@ -15,3 +15,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+table {
+  width: 720px; /* Fixed width as per client design */
+  border-collapse: collapse; /* Ensures cells share borders */
+  border: 1px solid rgb(241, 230, 216);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures content fits within the table */
+  table-layout: fixed; /* Ensures consistent column widths */
+  margin: 0 auto; /* Center the table */
+}
+
+thead th {
+  background-color: #f4f4f4; /* Light background for the header */
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd; /* Adds a distinct line below the header */
+  white-space: nowrap; /* Prevents header text from wrapping */
+}
+
+tbody td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #eee; /* Subtle line between rows */
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Alternate row colors for better readability */
+}
+
+tbody tr:last-child td {
+  border-bottom: none; /* Remove bottom border from last row */
+}
+
+tbody tr {
+  transition: all 0.3s ease-in-out; /* Smooth shrinking of rows */
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #888; /* Subtle text color */
+  height: calc(100% - 50px); /* Adjust based on table height */
+  line-height: calc(
+    100% - 50px
+  ); /* Vertically center text in remaining space */
+}
+
+.table-container {
+  width: 720px;
+  height: 360px;
+  overflow-y: auto; /* Allows scrolling if content exceeds height */
+  border: 1px solid rgb(241, 230, 216);
+  border-radius: 8px;
+}
