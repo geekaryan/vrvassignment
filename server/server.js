@@ -18,7 +18,7 @@ mongoose
     console.log("DATABASE is connected");
   });
 
-const port = 7000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`App is listening on ${port}`);
 });

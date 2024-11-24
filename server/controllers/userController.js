@@ -21,7 +21,7 @@ exports.findAll = async (req, res) => {
 exports.findOne = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await user.findById(id);
+    const user = await User.findById(id);
     res.status(200).json({
       status: "success",
       data: {
