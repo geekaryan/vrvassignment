@@ -1,9 +1,16 @@
 import SearchIcon from "@mui/icons-material/Search";
-
+import { useDispatch, useSelector } from "react-redux";
+import { urlActions } from "../../store/url";
 import styles from "./Navbar.module.css";
 import logo from "./../assets/Image.png";
 
 const Navbar = () => {
+  const selector = useSelector((state) => state.url.id);
+  const dispatch = useDispatch();
+
+  const logOutHandler = () => {
+    dispatch(urlActions.remove());
+  };
   return (
     <div className={`${styles.mainDiv}`}>
       <div className={styles.fiflex}>
@@ -26,9 +33,18 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center mr-6">
-        <div className={`${styles.btnprimary} mr-4`}>
-          <button className="">Login</button>
-        </div>
+        {selector.length > 0 ? (
+          <div className={`${styles.btnprimary} mr-4`}>
+            <button className="" onClick={logOutHandler}>
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className={`${styles.btnprimary} mr-4`}>
+            <button className="">Login</button>
+          </div>
+        )}
+
         <div className={styles.btnsecondary}>
           <button>Help</button>
         </div>
