@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  companyName: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Company",
+  },
   passwordConfirm: {
     type: String,
     required: [true, "User must have a password confirmation"],

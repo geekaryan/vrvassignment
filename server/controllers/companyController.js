@@ -43,7 +43,7 @@ exports.findOne = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        company,
+        company: company,
       },
     });
   } catch (err) {

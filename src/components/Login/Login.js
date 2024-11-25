@@ -7,6 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  let id = "";
 
   const apiHandler = async () => {
     const response = await fetch("/api/user/login", {
@@ -27,8 +28,16 @@ const Login = () => {
     if (data.status === "success") {
       console.log(data);
       console.log(data.data.user.company);
+      id = data.data.user._id;
+      userDetailHandler();
       console.log("User login successfully");
     }
+  };
+
+  const userDetailHandler = async () => {
+    const response = await fetch(`/api/user/${id}`);
+    const data = await response.json();
+    console.log(data.data.user[0].companyDetail[0]._id);
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -54,7 +63,7 @@ const Login = () => {
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            type="text"
+            type="password"
             placeholder="password"
             alt="password"
           />
