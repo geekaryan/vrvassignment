@@ -4,15 +4,22 @@ import { urlActions } from "../../store/url";
 import styles from "./Navbar.module.css";
 import logo from "./../assets/Image.png";
 import { authActions } from "../../store/auth";
+import { roleActions } from "../../store/role";
 
-const Navbar = () => {
+const Navbar = ({ bottomRef }) => {
   const auth = useSelector((state) => state.auth.logged);
-
   const dispatch = useDispatch();
 
   const logOutHandler = () => {
     dispatch(urlActions.remove());
     dispatch(authActions.logout());
+    dispatch(roleActions.remove());
+  };
+
+  const logInHandler = () => {
+    if (bottomRef?.current) {
+      bottomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
   return (
     <div className={`${styles.mainDiv}`}>
@@ -43,7 +50,7 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <div className={`${styles.btnprimary} mr-4`}>
+          <div onClick={logInHandler} className={`${styles.btnprimary} mr-4`}>
             <button className="">Login</button>
           </div>
         )}

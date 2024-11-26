@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import { useRef } from "react";
 import Navbar from "../Navbar/Navbar";
 import SlideChange from "../SlideChange/SlideChange";
 import Invite from "../Invite/Invite";
@@ -8,23 +8,30 @@ import Login from "../Login/Login";
 
 const Index = () => {
   const auth = useSelector((state) => state.auth.logged);
+  const bottomRef = useRef(null);
   return (
     <div>
       <div className="mt-3">
-        <Navbar />
+        <Navbar bottomRef={bottomRef} />
       </div>
       <div className="flex justify-between ml-8 mr-8 mt-11 mb-2">
         <div>
           <SlideChange />
         </div>
-        <div>
-          <User />
-        </div>
+        {auth ? (
+          <div>
+            <User />
+          </div>
+        ) : (
+          <div className="flex items-center justify-center h-screen text-4xl font-bold text-gray-700">
+            Kindly login or signup
+          </div>
+        )}
         <div>
           <Invite />
         </div>
       </div>
-      <div>{auth ? "" : <Login />}</div>
+      <div ref={bottomRef}>{auth ? "" : <Login />}</div>
     </div>
   );
 };

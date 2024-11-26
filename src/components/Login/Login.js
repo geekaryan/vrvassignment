@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { urlActions } from "../../store/url";
 import { authActions } from "../../store/auth";
+import { loginActions } from "../../store/login";
+import { roleActions } from "../../store/role";
 
 const Login = () => {
   const [name, setName] = useState("");
@@ -11,8 +13,10 @@ const Login = () => {
   const [company, setCompany] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   let id;
+  let roole;
 
   const selector = useSelector((state) => state.url.id);
+  const loginned = useSelector((state) => state.login.login);
   console.log(selector);
   const dispatch = useDispatch();
 
@@ -29,6 +33,9 @@ const Login = () => {
     });
     if (!response.ok) {
       console.log(response.status);
+      if (response.status === 401) {
+        alert("Invalid credentials");
+      }
     }
 
     const data = await response.json();
@@ -36,9 +43,12 @@ const Login = () => {
       console.log(data);
       console.log(data.data.user.company);
       id = data.data.user._id;
+      roole = data.data.user.role;
       userDetailHandler();
+      console.log(data.data.user.role);
       console.log("User login successfully");
       dispatch(authActions.login());
+      dispatch(roleActions.add(roole));
     }
   };
 
@@ -57,68 +67,116 @@ const Login = () => {
     console.log(role);
     console.log(email);
   };
+
+  const preventHandler = (e) => {
+    e.preventDefault();
+  };
+  const toggleHandler = () => {
+    dispatch(loginActions.toogle());
+  };
   return (
-    <div className="ml-8">
-      <form onSubmit={onSubmitHandler}>
-        <div>
-          <input
-            value={name}
-            type="text"
-            placeholder="name"
-            alt="name"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="password"
-            alt="password"
-          />
-        </div>
-        <div>
-          <input
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            type="text"
-            placeholder="role"
-            alt="role"
-          />
-        </div>
-        <div>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="email"
-            alt="email"
-          />
-        </div>
-        <div>
-          <input
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
-            type="text"
-            placeholder="company"
-            alt="company"
-          />
-        </div>
-        <div>
-          <input
-            value={passwordConfirm}
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-            type="text"
-            placeholder="confirm password"
-            alt="comfimation"
-          />
-        </div>
-        <div>
-          <button type="Submit">Login</button>
-        </div>
-        <div>{selector}</div>
-      </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <form onSubmit={preventHandler} className="space-y-6">
+          {!loginned && (
+            <div>
+              <input
+                value={name}
+                type="text"
+                placeholder="Name"
+                alt="name"
+                onChange={(e) => setName(e.target.value)}
+                className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          )}
+          <div>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Email"
+              alt="email"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+              alt="password"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          {!loginned && (
+            <div>
+              <input
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                type="text"
+                placeholder="Role"
+                alt="role"
+                className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          )}
+
+          {!loginned && (
+            <div>
+              <input
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                type="text"
+                placeholder="Company"
+                alt="company"
+                className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          )}
+          {!loginned && (
+            <div>
+              <input
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                type="password"
+                placeholder="Confirm Password"
+                alt="confirmation"
+                className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          )}
+          {!loginned && (
+            <div>
+              <button
+                onClick={onSubmitHandler}
+                type="submit"
+                className="w-full py-3 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Sing Up
+              </button>
+            </div>
+          )}
+
+          {loginned && (
+            <div>
+              <button
+                onClick={onSubmitHandler}
+                type="submit"
+                className="w-full py-3 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Login
+              </button>
+            </div>
+          )}
+          {loginned ? (
+            <div onClick={toggleHandler}>Create account? Sign Up</div>
+          ) : (
+            <div onClick={toggleHandler}>Already account? Login</div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
