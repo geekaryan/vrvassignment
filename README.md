@@ -2,8 +2,7 @@
 
 ## 📋 Project Overview
 
-As a part of VRV Security Frontend Assignment. I created a comprehensive web application for roles tracking and management, designed to streamline workflow across different organizational roles.
-Only Admin is able to edit the roles, which reset of manager and user have to access to edit the role.
+As part of the VRV Security Frontend Assignment, I created a comprehensive web application for tracking and managing roles. The application is designed to streamline workflows across different organizational roles. Only admins are able to edit roles, while managers and users do not have the ability to make such changes.
 
 ## 🛠️ Prerequisites
 
