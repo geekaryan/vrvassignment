@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 import Navbar from "../Navbar/Navbar";
 import SlideChange from "../SlideChange/SlideChange";
 import Invite from "../Invite/Invite";
@@ -5,6 +7,7 @@ import User from "../Users/User";
 import Login from "../Login/Login";
 
 const Index = () => {
+  const auth = useSelector((state) => state.auth.logged);
   return (
     <div>
       <div className="mt-3">
@@ -21,9 +24,7 @@ const Index = () => {
           <Invite />
         </div>
       </div>
-      <div>
-        <Login />
-      </div>
+      <div>{auth ? "" : <Login />}</div>
     </div>
   );
 };

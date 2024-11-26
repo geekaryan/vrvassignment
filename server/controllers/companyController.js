@@ -3,7 +3,7 @@ const Company = require("./../modal/companyModal");
 
 exports.findAll = async (req, res) => {
   try {
-    const company = await Company.findOne();
+    const company = await Company.find();
     res.status(200).json({
       status: "success",
       data: {

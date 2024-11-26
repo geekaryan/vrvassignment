@@ -55,3 +55,20 @@ exports.findOne = async (req, res) => {
     });
   }
 };
+
+exports.create = async (req, res) => {
+  try {
+    const user = await User.create(req.body);
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      statusL: "fail",
+      message: err.message,
+    });
+  }
+};

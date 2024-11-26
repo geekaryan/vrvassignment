@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { urlActions } from "../../store/url";
 import styles from "./Navbar.module.css";
 import logo from "./../assets/Image.png";
+import { authActions } from "../../store/auth";
 
 const Navbar = () => {
-  const selector = useSelector((state) => state.url.id);
+  const auth = useSelector((state) => state.auth.logged);
+
   const dispatch = useDispatch();
 
   const logOutHandler = () => {
     dispatch(urlActions.remove());
+    dispatch(authActions.logout());
   };
   return (
     <div className={`${styles.mainDiv}`}>
@@ -33,7 +36,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex items-center mr-6">
-        {selector.length > 0 ? (
+        {auth ? (
           <div className={`${styles.btnprimary} mr-4`}>
             <button className="" onClick={logOutHandler}>
               Logout

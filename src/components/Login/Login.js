@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { urlActions } from "../../store/url";
+import { authActions } from "../../store/auth";
 
 const Login = () => {
   const [name, setName] = useState("");
@@ -37,6 +38,7 @@ const Login = () => {
       id = data.data.user._id;
       userDetailHandler();
       console.log("User login successfully");
+      dispatch(authActions.login());
     }
   };
 

@@ -8,7 +8,6 @@ const companySchema = new mongoose.Schema({
   employee: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: [true, "A company must have some employee"],
   },
 });
 
