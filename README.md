@@ -75,7 +75,7 @@ npm start
 
 
 
-### 👥 Manager Screenshots
+### 👥 Manager/User Interface Screenshots
 
 ![image](https://github.com/user-attachments/assets/28ba1128-de33-4e65-85c6-f1ab3dd4fc39)
 
