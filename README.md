@@ -1,8 +1,8 @@
-# 🚀 Project Management System
+# 🚀 Role Management System
 
 ## 📋 Project Overview
 
-A comprehensive web application for roles tracking and management, designed to streamline workflow across different organizational roles.
+As a part of VRV Security Frontend Assignment. I created a comprehensive web application for roles tracking and management, designed to streamline workflow across different organizational roles.
 
 ## 🛠️ Prerequisites
 
@@ -76,27 +76,9 @@ MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## 📦 Tech Stack
 
 - Frontend: React.js
 - Backend: Node.js, Express
 - Database: MongoDB
 - Authentication: JWT
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## 📞 Contact
-
-Your Name - your.email@example.com
-
-Project Link: [https://github.com/yourusername/project-management-system](https://github.com/yourusername/project-management-system)
