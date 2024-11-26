@@ -21,10 +21,17 @@ exports.findAll = async (req, res) => {
 
 exports.findOne = async (req, res) => {
   try {
-    const id = req.params.id;
+    const { identifier } = req.params; // Extract `identifier` from the route parameter
+
+    const isObjectId = mongoose.Types.ObjectId.isValid(identifier);
+
+    const matchCondition = isObjectId
+      ? { _id: mongoose.Types.ObjectId(identifier) } // Match by ObjectId
+      : { email: { $regex: `^${identifier}$`, $options: "i" } }; // Case-insensitive match by email
+
     const user = await User.aggregate([
       {
-        $match: { _id: mongoose.Types.ObjectId(id) },
+        $match: matchCondition,
       },
       {
         $lookup: {
@@ -37,11 +44,12 @@ exports.findOne = async (req, res) => {
     ]);
 
     if (!user || user.length === 0) {
-      res.status(404).json({
+      return res.status(404).json({
         status: "fail",
-        message: "User don't have a company",
+        message: "User not found",
       });
     }
+
     res.status(200).json({
       status: "success",
       data: {
@@ -49,7 +57,7 @@ exports.findOne = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: "fail",
       message: err.message,
     });
@@ -68,6 +76,45 @@ exports.create = async (req, res) => {
   } catch (err) {
     res.status(404).json({
       statusL: "fail",
+      message: err.message,
+    });
+  }
+};
+
+exports.updateByEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { role } = req.body;
+
+    if (!role) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Role is required for updating the user",
+      });
+    }
+
+    const user = await User.findOneAndUpdate(
+      { email: { $regex: `^${email}$`, $options: "i" } },
+      { role },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        status: "fail",
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
       message: err.message,
     });
   }

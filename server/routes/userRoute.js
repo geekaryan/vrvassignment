@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/signup", authController.singUp);
 router.post("/login", authController.login);
 router.route("/").get(userController.findAll).post(userController.create);
-router.route("/:id").get(userController.findOne);
+router.get("/:identifier", userController.findOne);
+router.patch("/update/:email", userController.updateByEmail);
 
 module.exports = router;

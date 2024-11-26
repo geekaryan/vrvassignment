@@ -5,20 +5,21 @@ import styles from "./User.module.css";
 const User = () => {
   const auth = useSelector((state) => state.auth.logged);
   const id = useSelector((state) => state.url.id);
-  const currentUserRole = useSelector((state) => state.role.role); // Assuming role is stored in Redux
+  const currentUserRole = useSelector((state) => state.role.role);
 
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null); // For the popup
-  const [newRole, setNewRole] = useState(""); // For role editing
-  const [isPopupVisible, setIsPopupVisible] = useState(false); // Popup visibility state
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [newRole, setNewRole] = useState("");
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       if (auth && id) {
         try {
           const response = await fetch(`/api/company/${id}`);
+          if (!response.ok) throw new Error("Failed to fetch company data.");
           const apidata = await response.json();
           setData(apidata.data.company);
           setFilteredData(apidata.data.company[0]?.workers || []);
@@ -60,36 +61,41 @@ const User = () => {
 
   const handleRowClick = (user) => {
     setSelectedUser(user);
-    setNewRole(user.role); // Initialize with the current role
+    setNewRole(user.role);
     setIsPopupVisible(true);
   };
 
   const handleUpdateRole = async () => {
     if (selectedUser) {
       try {
-        const response = await fetch(`/api/user/${selectedUser.email}`, {
-          method: "PUT",
+        const response = await fetch(`/api/user/update/${selectedUser.email}`, {
+          method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ role: newRole }),
         });
+
         if (response.ok) {
+          const updatedUser = await response.json();
           alert("User role updated successfully!");
-          // Update the data locally
+
           setFilteredData((prev) =>
             prev.map((user) =>
               user.email === selectedUser.email
-                ? { ...user, role: newRole }
+                ? { ...user, role: updatedUser.data.user.role }
                 : user
             )
           );
-          setIsPopupVisible(false); // Close the popup
+
+          setIsPopupVisible(false);
         } else {
-          alert("Failed to update user role!");
+          const errorData = await response.json();
+          alert(`Failed to update user role: ${errorData.message}`);
         }
       } catch (error) {
         console.error("Error updating user role:", error);
+        alert("An error occurred while updating the user role.");
       }
     }
   };
@@ -137,7 +143,6 @@ const User = () => {
         </table>
       </div>
 
-      {/* Popup Box */}
       {isPopupVisible && selectedUser && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg w-1/3">
