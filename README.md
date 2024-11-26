@@ -44,7 +44,8 @@ npm start
 
 ### 🏠 Landing Page
 
-[I will add screenshot here]
+![landing](https://github.com/user-attachments/assets/4d0ac1ed-bcab-4887-8c0c-1ed163219af8)
+
 
 ### 🔐 Login Page
 
