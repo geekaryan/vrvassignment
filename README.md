@@ -3,6 +3,7 @@
 ## 📋 Project Overview
 
 As a part of VRV Security Frontend Assignment. I created a comprehensive web application for roles tracking and management, designed to streamline workflow across different organizational roles.
+Only Admin is able to edit the roles, which reset of manager and user have to access to edit the role.
 
 ## 🛠️ Prerequisites
 
@@ -66,6 +67,12 @@ npm start
 ### 👑 Admin Screenshots
 
 ![image](https://github.com/user-attachments/assets/affd18eb-a8f3-40d6-95b9-219df83ff72c)
+
+
+### 👑 Admin Update Functionality
+
+![image](https://github.com/user-attachments/assets/e71f4c82-05a9-42f9-8203-82933d148d68)
+
 
 
 ### 👥 Manager Screenshots
